@@ -1,0 +1,23 @@
+web:
+   image: erick/app0
+   environment:
+     - ALLOW_OVERRIDE=true
+   ports:
+     - "4014:80"
+   links:
+     - db
+   volumes:
+     - ./app:/app
+
+db:
+  image: erick/mysql0
+  restart: always
+  volumes:
+    - ./mysql:/var/lib/mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_USER: admin
+    MYSQL_PASSWORD: test
+    MYSQL_DATABASE: database
+  ports:
+    - "5014:3306"
